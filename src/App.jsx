@@ -11,7 +11,7 @@ import SocialProofSection from './components/TestimonialCard'
 
 const App = () => {
   return (
-    <BrowserRouter basename="/bucregaltech">
+    <BrowserRouter basename="/online-forum">
       <Routes>
         {/* Route for the main landing page */}
         <Route path="/" element={
