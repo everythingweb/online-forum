@@ -1,0 +1,154 @@
+import React from 'react';
+import { ClockIcon, TagIcon } from '@heroicons/react/24/solid';
+import family1 from '../assets/family1.webp'
+import family2 from '../assets/family2.avif'
+import family3 from '../assets/family3.webp'
+import family4 from '../assets/family4.webp'
+import family5 from '../assets/family5.png'
+import family6 from '../assets/family6.webp'
+
+// Sample data for the latest articles
+const latestPosts = [
+  {
+    id: 101,
+    title: "Understanding CSS Grid vs. Flexbox: Which to Choose?",
+    excerpt: "A comparison of two powerful layout tools and when to use each for optimal page structure.",
+    imageUrl: family1,
+    category: "Frontend",
+    date: "November 20, 2025",
+    readTime: "4 min read",
+    link: "#",
+  },
+  {
+    id: 102,
+    title: "Top 5 Productivity Hacks for Remote Software Engineers",
+    excerpt: "Strategies and tools to maximize focus and output when working from home or a co-working space.",
+    imageUrl: family2,
+    category: "Career",
+    date: "November 18, 2025",
+    readTime: "6 min read",
+    link: "#",
+  },
+  {
+    id: 103,
+    title: "Implementing Dark Mode with Tailwind CSS and React",
+    excerpt: "A step-by-step guide to adding theme toggling using Tailwind classes and React state management.",
+    imageUrl: family3,
+    category: "Development",
+    date: "November 15, 2025",
+    readTime: "7 min read",
+    link: "#",
+  },
+  {
+    id: 104,
+    title: "10 Essential VS Code Extensions for TypeScript Developers",
+    excerpt: "Boost your coding speed and quality with these must-have extensions for the TypeScript ecosystem.",
+    imageUrl: family4,
+    category: "Tools",
+    date: "November 12, 2025",
+    readTime: "5 min read",
+    link: "#",
+  },
+  {
+    id: 105,
+    title: "The Case for GraphQL in Modern Web Applications",
+    excerpt: "How GraphQL improves data fetching efficiency and developer experience compared to traditional REST APIs.",
+    imageUrl: family5,
+    category: "Backend",
+    date: "November 10, 2025",
+    readTime: "8 min read",
+    link: "#",
+  },
+  {
+    id: 106,
+    title: "Getting Started with Zustand: A Minimal State Manager",
+    excerpt: "Discover the simplicity and power of Zustand for lightweight and fast global state in your React projects.",
+    imageUrl: family6,
+    category: "State Management",
+    date: "November 7, 2025",
+    readTime: "4 min read",
+    link: "#",
+  },
+];
+
+// --- Sub-Component for a single article card ---
+
+const ArticleCard = ({ post }) => (
+  <a 
+    href={post.link} 
+    className="block group overflow-hidden rounded-lg shadow-md transition-shadow duration-300 bg-white hover:shadow-xl"
+  >
+    {/* Image */}
+    <div className="overflow-hidden">
+      <img 
+        src={post.imageUrl} 
+        alt={post.title} 
+        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+      />
+    </div>
+
+    {/* Content */}
+    <div className="p-5">
+      {/* Metadata */}
+      <div className="flex items-center space-x-3 text-sm text-gray-500 mb-2">
+        <span className="flex items-center">
+          <ClockIcon className="w-4 h-4 mr-1 text-indigo-500" />
+          {post.readTime}
+        </span>
+        <span className="flex items-center">
+          <TagIcon className="w-4 h-4 mr-1 text-indigo-500" />
+          {post.category}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-xl font-bold text-gray-900 leading-snug transition-colors duration-300 group-hover:text-indigo-700">
+        {post.title}
+      </h3>
+
+      {/* Excerpt */}
+      <p className="mt-2 text-base text-gray-600 line-clamp-2">
+        {post.excerpt}
+      </p>
+      
+      {/* Date */}
+      <p className="mt-4 text-xs font-medium text-gray-400">
+        Published on: {post.date}
+      </p>
+    </div>
+  </a>
+);
+
+// --- Main Component ---
+
+const LatestPostsFeed = () => {
+  return (
+    <section className="py-12 md:py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 md:mb-10 text-center">
+          ✨ Latest Articles
+        </h2>
+        
+        {/* Articles Grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {latestPosts.map(post => (
+            <ArticleCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="mt-12 text-center">
+          <a
+            href="/blog"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300"
+          >
+            View All Posts (Blog Index)
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LatestPostsFeed;
